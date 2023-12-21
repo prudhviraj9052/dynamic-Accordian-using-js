@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url(https://cdn.wallpapersafari.com/54/86/cU6JWo.jpg);
+            background-size: 100%;
+            background-position: cover;
+        }
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        .accordion-item {
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+
+        .accordion-title,
+        .accordion-description {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .accordion-description {
+            display: none;
+        }
+
+        .heading {
+            color: black;
+            font-weight: bold;
+            font-size: 50px;
+        }
+    </style>
+    <title>Dynamic Accordion</title>
+</head>
+
+<body>
+    <center>
+        <header class="heading">Accordian</header>
+        <div id="accordion" class="accordion">
+            <!-- Add Title and Description buttons -->
+            <button onclick="addAccordionItem()">Add Title</button>
+            <button onclick="addDescription()">Add Description</button>
+        </div>
+    </center>
+    <script>
+        function addAccordionItem() {
+            const accordion = document.getElementById('accordion');
+
+            // Create accordion item
+            const accordionItem = document.createElement('div');
+            accordionItem.className = 'accordion-item';
+
+            // Create title
+            const title = document.createElement('div');
+            title.className = 'accordion-title';
+            title.textContent = 'DisneyLand';
+            title.addEventListener('click', toggleDescription);
+
+            // Create description
+            const description = document.createElement('div');
+            description.className = 'accordion-description';
+            description.textContent = 'California, USA: Disneyland Resort (Disneyland Park, Disney California Adventure) Paris, France : Disneyland Paris (Disneyland Park, Walt Disney Studios Park) Tokyo, Japan: Tokyo Disney Resort (Tokyo Disneyland, Tokyo Disney Sea) Hong Kong : Hong Kong Disneyland.';
+
+            // Append title and description to accordion item
+            accordionItem.appendChild(title);
+            accordionItem.appendChild(description);
+
+            // Append accordion item to accordion
+            accordion.appendChild(accordionItem);
+        }
+
+        function addDescription() {
+            const accordion = document.getElementById('accordion');
+            const accordionItems = accordion.getElementsByClassName('accordion-item');
+
+            // Check if there's at least one accordion item
+            if (accordionItems.length > 0) {
+                // Get the first accordion item
+                const firstAccordionItem = accordionItems[0];
+
+                // Create description
+                const description = document.createElement('div');
+                description.className = 'accordion-description';
+                description.textContent = 'New Description';
+
+                // Append description to the first accordion item
+                firstAccordionItem.appendChild(description);
+            }
+        }
+
+        function toggleDescription() {
+            const description = this.nextElementSibling;
+            description.style.display = (description.style.display === 'none' || description.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+</body>
+
+</html>
